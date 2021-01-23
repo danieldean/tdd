@@ -32,9 +32,13 @@ body {
     max-width: 1000px;
     margin: 10px auto 0;
 }
-.table-container thead th {
+.table-container thead tr.first th {
     position: sticky;
     top: 0;
+}
+.table-container thead tr.second th {
+    position: sticky;
+    top: 34px;
 }
 
 /* Table styling. */
