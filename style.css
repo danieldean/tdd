@@ -32,13 +32,18 @@ body {
     max-width: 1000px;
     margin: 10px auto 0;
 }
-.table-container thead tr.first th {
+.table-container div.first {
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    background-color: rgb(127, 128, 127);
+    text-align: center;
+    padding: 8px 16px;
     position: sticky;
     top: 0;
+    left: 0;
 }
 .table-container thead tr.second th {
     position: sticky;
-    top: 34px;
 }
 
 /* Table styling. */

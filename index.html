@@ -7,17 +7,22 @@
         <meta name="author" content="Daniel Dean <dd@danieldean.uk>">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
-        <script src="https://www.w3schools.com/lib/w3.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
         <div class="header">
             <h1>Tour de Dartford</h1>
         </div>
-        <div class="table-container" w3-include-html="table-jan.html">
+        <div class="table-container" id="table-jan">
             <!--- Table will be inserted here. -->
         </div>
         <script>
-            w3.includeHTML();
+            $(document).ready(function() {
+                $('#table-jan').load("table-jan.html", function(response, status, xhr) {
+                    var firstRowHeight = $(".first").outerHeight();
+                    $("thead tr.second th").css("top", firstRowHeight);
+                });
+            });
         </script>
         <div class="footer">
             <p>Find me on <a href="https://github.com/danieldean/tour_de_dartford">GitHub</a></p>
