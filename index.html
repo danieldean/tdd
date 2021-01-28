@@ -13,15 +13,42 @@
         <div class="header">
             <h1>Tour de Dartford</h1>
         </div>
+        <div class="table-container" id="table-apr">
+            <!--- Table will be inserted here. -->
+        </div>
+        <div class="table-container" id="table-mar">
+            <!--- Table will be inserted here. -->
+        </div>
+        <div class="table-container" id="table-feb">
+            <!--- Table will be inserted here. -->
+        </div>
         <div class="table-container" id="table-jan">
             <!--- Table will be inserted here. -->
         </div>
         <script>
             $(document).ready(function() {
-                $('#table-jan').load("table-jan.html", function(response, status, xhr) {
-                    var firstRowHeight = $(".first").outerHeight();
-                    $("thead tr.second th").css("top", firstRowHeight);
+
+                // Get IDs of all table-container divs.
+                var IDs = [];
+                $("body").find("div[id^='table-']").each(function() {
+                    IDs.push(this.id);
                 });
+
+                // Iterate through the IDs and attempt to load the table.
+                for(var i = 0; i < IDs.length; i++) {
+                    (function(id) {
+                        $("#" + id).load(id + ".html", function(response, status, xhr) {
+                            if(status == "success") {
+                                var firstRowHeight = $("div[id='" + id + "'] div.first").outerHeight();
+                                $("div[id='" + id + "'] table thead tr.second th").css("top", firstRowHeight);
+                            };
+                            if(status == "error") {
+                                $("#" + id).css("display", "none");
+                            };
+                        });
+                    })(IDs[i]);
+                };
+
             });
         </script>
         <div class="footer">
